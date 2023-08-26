@@ -9,7 +9,7 @@ const app = express();
 const templatesPath = "/public/views/";
 
 //routes
-app.use(express.static("src/public"));
+app.use(express.static("public/"));
 
 app.get("/", (req, res) => {
   return res.sendFile(templatesPath + "index.html", {

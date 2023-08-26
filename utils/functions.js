@@ -11,7 +11,7 @@ const path = require("path");
  */
 async function getConfigFile() {
   try {
-    const pathFile = path.join(__dirname, "../..", "conf.json");
+    const pathFile = path.join(__dirname, "../", "conf.json");
     const content = await readFile(pathFile, "utf-8");
     return JSON.parse(content.toString());
   } catch (e) {
