@@ -3,13 +3,15 @@
  */
 
 const express = require("express");
-const { getConfigFile } = require("./utils/functions");
+const { getConfigFile } = require("./src/utils/functions");
 
 const app = express();
-const templatesPath = "/public/views/";
+
+//template route
+const templatesPath = "/src/public/views/";
 
 //routes
-app.use("/public", express.static(__dirname + "/public"));
+app.use("/public", express.static(__dirname + "/src/public"));
 
 app.get("/", (req, res) => {
   return res.sendFile(templatesPath + "index.html", {
@@ -18,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 getConfigFile()
-  .then((config) => app.listen(config.PORT, "0.0.0.0"))
+  .then((config) => app.listen(process.env.PORT || config.PORT, "0.0.0.0"))
   .then(() => getConfigFile())
   .then((config) => console.log(`Server in port ${config.PORT}`))
   .catch((e) => console.log(e));
